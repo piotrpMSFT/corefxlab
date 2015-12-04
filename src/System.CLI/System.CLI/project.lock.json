@@ -2,7 +2,17 @@
   "locked": false,
   "version": 2,
   "targets": {
-    "DNX,Version=v4.5.1": {},
+    "DNX,Version=v4.5.1": {
+      "System.CommandLine/0.1.0-d120415-1": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net45+win8+wpa81+aspnetcore50/System.CommandLine.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8+wpa81+aspnetcore50/System.CommandLine.dll": {}
+        }
+      }
+    },
     "DNXCore,Version=v5.0": {
       "Microsoft.CSharp/4.0.1-beta-23409": {
         "type": "package",
@@ -41,6 +51,15 @@
         },
         "runtime": {
           "lib/DNXCore50/System.Collections.dll": {}
+        }
+      },
+      "System.CommandLine/0.1.0-d120415-1": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net45+win8+wpa81+aspnetcore50/System.CommandLine.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8+wpa81+aspnetcore50/System.CommandLine.dll": {}
         }
       },
       "System.Diagnostics.Debug/4.0.10": {
@@ -284,8 +303,28 @@
         }
       }
     },
-    "DNX,Version=v4.5.1/win7-x86": {},
-    "DNX,Version=v4.5.1/win7-x64": {},
+    "DNX,Version=v4.5.1/win7-x86": {
+      "System.CommandLine/0.1.0-d120415-1": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net45+win8+wpa81+aspnetcore50/System.CommandLine.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8+wpa81+aspnetcore50/System.CommandLine.dll": {}
+        }
+      }
+    },
+    "DNX,Version=v4.5.1/win7-x64": {
+      "System.CommandLine/0.1.0-d120415-1": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net45+win8+wpa81+aspnetcore50/System.CommandLine.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8+wpa81+aspnetcore50/System.CommandLine.dll": {}
+        }
+      }
+    },
     "DNXCore,Version=v5.0/win7-x86": {
       "Microsoft.CSharp/4.0.1-beta-23409": {
         "type": "package",
@@ -342,6 +381,15 @@
         },
         "runtime": {
           "lib/DNXCore50/System.Collections.dll": {}
+        }
+      },
+      "System.CommandLine/0.1.0-d120415-1": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net45+win8+wpa81+aspnetcore50/System.CommandLine.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8+wpa81+aspnetcore50/System.CommandLine.dll": {}
         }
       },
       "System.Diagnostics.Debug/4.0.10": {
@@ -641,6 +689,15 @@
         },
         "runtime": {
           "lib/DNXCore50/System.Collections.dll": {}
+        }
+      },
+      "System.CommandLine/0.1.0-d120415-1": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net45+win8+wpa81+aspnetcore50/System.CommandLine.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8+wpa81+aspnetcore50/System.CommandLine.dll": {}
         }
       },
       "System.Diagnostics.Debug/4.0.10": {
@@ -1007,6 +1064,17 @@
         "System.Collections.4.0.11-beta-23409.nupkg",
         "System.Collections.4.0.11-beta-23409.nupkg.sha512",
         "System.Collections.nuspec"
+      ]
+    },
+    "System.CommandLine/0.1.0-d120415-1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "dmaG2VVaVT5IoeVISi9+2zvqmgRKiJiSq4n4oBqIUw/ulvVYXed1xW1XsmS5ydB35GUo9+X+aQPTfrl9psb2Rw==",
+      "files": [
+        "lib/portable-net45+win8+wpa81+aspnetcore50/System.CommandLine.dll",
+        "System.CommandLine.0.1.0-d120415-1.nupkg",
+        "System.CommandLine.0.1.0-d120415-1.nupkg.sha512",
+        "System.CommandLine.nuspec"
       ]
     },
     "System.Diagnostics.Debug/4.0.10": {
@@ -1732,7 +1800,9 @@
     }
   },
   "projectFileDependencyGroups": {
-    "": [],
+    "": [
+      "System.CommandLine >= 0.1.0-d120415-1"
+    ],
     "DNX,Version=v4.5.1": [],
     "DNXCore,Version=v5.0": [
       "Microsoft.CSharp >= 4.0.1-beta-23409",
