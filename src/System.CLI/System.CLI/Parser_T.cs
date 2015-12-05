@@ -11,7 +11,7 @@ namespace System.CLI
         private readonly Dictionary<string, Func<object, IEnumerable<string>, int>> _commands;
         private Func<Type, IEnumerable<string>, object> _deserializer; 
 
-        public Parser(Func<T, IEnumerable<string>, int> defaultCommandHandler, StringComparer propertyNameComparer = null)
+        internal Parser(Func<T, IEnumerable<string>, int> defaultCommandHandler, StringComparer propertyNameComparer = null)
         {
             if (defaultCommandHandler == null) throw new ArgumentNullException(nameof(defaultCommandHandler));
 
