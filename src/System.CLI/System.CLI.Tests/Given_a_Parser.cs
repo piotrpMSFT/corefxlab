@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Microsoft.Its.Recipes;
 using Xunit;
 
@@ -25,7 +27,7 @@ namespace System.CLI.Tests
             var expectedExitCode = Any.Int();
             var args = Any.Sequence(x => Any.String());
 
-            new Parser(a => expectedExitCode)
+            new Parser(r => expectedExitCode)
                 .Execute(args)
                 .Should().Be(expectedExitCode, "Because the defaultCommand is called");
         }
@@ -33,7 +35,7 @@ namespace System.CLI.Tests
         [Fact]
         public void When_adding_a_null_command_then_it_throws_ArgumentNullException()
         {
-            Action action = () => new Parser(s => Any.Int()).WithCommand<Command1Args>(null);
+            Action action = () => new Parser(r => Any.Int()).WithCommand<Command1Args>(null);
 
             action.ShouldThrow<ArgumentNullException>("Because a null command cannot be registered.")
                 .WithMessage("Value cannot be null.\r\nParameter name: command");
@@ -42,7 +44,7 @@ namespace System.CLI.Tests
         [Fact]
         public void When_adding_a_command_whose_type_does_not_match_convention_then_it_throws_ArgumentNullException()
         {
-            Action action = () => new Parser(s => Any.Int()).WithCommand<string>(a => Any.Int());
+            Action action = () => new Parser(r => Any.Int()).WithCommand<string>((o, a) => Any.Int());
 
             action.ShouldThrow<ArgumentException>("Because command parameter Types must follow the convention '[CommandName]Args'.")
                 .WithMessage("command parameter Type name must end in 'Args', but 'String' does not.");
@@ -54,8 +56,8 @@ namespace System.CLI.Tests
             var expectedExitCode = Any.Int();
             var args = Enumerable.Empty<string>();
 
-            new Parser(a => expectedExitCode)
-                .WithCommand<Command1Args>(a => Any.Int())
+            new Parser(r => expectedExitCode)
+                .WithCommand<Command1Args>((o, a) => Any.Int())
                 .Execute(args)
                 .Should().Be(expectedExitCode, "Because the defaultCommand is called");
         }
@@ -66,8 +68,8 @@ namespace System.CLI.Tests
             var expectedExitCode = Any.Int();
             var args = Any.Sequence(x => Any.String());
 
-            new Parser(a => expectedExitCode)
-                .WithCommand<Command1Args>(a => Any.Int())
+            new Parser(r => expectedExitCode)
+                .WithCommand<Command1Args>((o, a) => Any.Int())
                 .Execute(args)
                 .Should().Be(expectedExitCode, "Because the defaultCommand is called");
         }
@@ -78,8 +80,8 @@ namespace System.CLI.Tests
             var expectedExitCode = Any.Int();
             var args = (new [] {"Command1"}).Concat(Any.Sequence(x => Any.String()));
 
-            new Parser(a => Any.Int())
-                .WithCommand<Command1Args>(a => expectedExitCode)
+            new Parser(r => Any.Int())
+                .WithCommand<Command1Args>((o, a) => expectedExitCode)
                 .Execute(args)
                 .Should().Be(expectedExitCode, "Because the defaultCommand is called");
         }
@@ -90,8 +92,8 @@ namespace System.CLI.Tests
             var expectedExitCode = Any.Int();
             var args = (new[] { "Command1".ToLower() }).Concat(Any.Sequence(x => Any.String()));
 
-            new Parser(a => Any.Int(), StringComparer.OrdinalIgnoreCase)
-                .WithCommand<Command1Args>(a => expectedExitCode)
+            new Parser(r => Any.Int(), StringComparer.OrdinalIgnoreCase)
+                .WithCommand<Command1Args>((o, a) => expectedExitCode)
                 .Execute(args)
                 .Should().Be(expectedExitCode, "Because the defaultCommand is called");
         }
@@ -99,7 +101,7 @@ namespace System.CLI.Tests
         [Fact]
         public void When_setting_Deserializer_to_null_then_ArgumentNullException_is_thrown()
         {
-            Action action = () => new Parser(s => Any.Int()).WithDeserializer(null);
+            Action action = () => new Parser(r => Any.Int()).WithDeserializer(null);
 
             action.ShouldThrow<ArgumentException>("Because command parameter Types must follow the convention '[CommandName]Args'.")
                 .WithMessage("Value cannot be null.\r\nParameter name: deserializer");
